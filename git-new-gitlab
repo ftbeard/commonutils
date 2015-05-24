@@ -5,4 +5,4 @@ token=
 
 test -z $repo && echo "Repo name required." 1>&2 && exit 1
 
-curl -H "Content-Type:application/json" http://git.atosphere.info/api/v3/projects?private_token=$token -d "{ \"name\":\"$repo\" }" 2>/dev/null | jq -e .id 1>/dev/null && echo "Repo created !" || echo "Repo allready exists, or an error happened"
+curl -H "Content-Type:application/json" http://git.atosphere.info/api/v3/projects?private_token=$token -d "{ \"name\":\"$repo\" }" 2>/dev/null | jq -e .id 1>/dev/null && (echo "Repo created !" && git clone git@git.atosphere.info:$USER/$repo) || echo "Repo already exists, or an error happened"
