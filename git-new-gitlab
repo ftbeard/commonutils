@@ -1,17 +1,19 @@
 #!/bin/sh
 
+# GitLab URL
+gitlab_url=
 # secret API token
 token=
 
 repo=$1
-api_url=http://git.atosphere.info/api/v3/projects?private_token=$token
+api_url=http://$gitlab_url/api/v3/projects?private_token=$token
 
 test -z $repo && echo "Repo name required." 1>&2 && exit 1
 
 if curl -H "Content-Type:application/json" $api_url -d "{ \"name\":\"$repo\" }" 2>/dev/null | jq -e .id 1>/dev/null;
 then
 	echo "Repo created !"
-	git clone git@git.atosphere.info:$USER/$repo
+	git clone git@$gitlab_url:$USER/$repo
 else
 	echo "Repo already exists, or an error happened"
 fi
