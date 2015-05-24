@@ -1,7 +1,7 @@
 #!/bin/sh
 
 repo=$1
-token=ScyytZW8aLAeSZpAE3TD
+token=
 
 test -z $repo && echo "Repo name required." 1>&2 && exit 1
 
