@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then echo -n "$1 "; fi
+read msg
+if [ $msg == "yes" -o $msg == "y" -o $msg == "Y" ]; then exit 0; else exit 1; fi
