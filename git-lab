@@ -5,9 +5,10 @@
 # GitLab URL
 gitlab_url=git.atosphere.info
 # secret GitLab API token
-token=oG-
+token=
 # complete URL to the GitLab API
 
+USER=ato
 
 ### FUNCTIONS
 
@@ -37,7 +38,6 @@ case "$cmd" in
 		if curl -H "Content-Type:application/json" $api_url/projects$TOK -d "{ \"name\":\"$repo\" }" 2>/dev/null | jq -e .id 1>/dev/null;
 		then
 			echo "Repo created !"
-			git clone git@$gitlab_url:$USER/$repo
 		else
 			echo "Repo already exists, or an error happened"
 		fi
@@ -55,7 +55,8 @@ case "$cmd" in
 	"clone")
 		name=$2
 		test -z $name && gitlab_usage
-		git clone git@$gitlab_url:$USER/$name
+		echo $USER
+		git clone ssh://git@$gitlab_url:$USER/$name
 	;;
 	"-h")
 		gitlab_usage
