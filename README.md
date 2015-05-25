@@ -8,3 +8,7 @@ usage : git gitlab [command]
 -   delete [name] : delete the repository
 -   list : list all the repositories on the GitLab server
 -   -h : show this help
+
+Note:
+-----
+don't forget to add public ssh key to gitlab config panel

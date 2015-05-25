@@ -8,8 +8,6 @@ gitlab_url=git.atosphere.info
 token=
 # complete URL to the GitLab API
 
-USER=ato
-
 ### FUNCTIONS
 
 TOK="?private_token=$token"
@@ -56,7 +54,7 @@ case "$cmd" in
 		name=$2
 		test -z $name && gitlab_usage
 		echo $USER
-		git clone git@$gitlab_url:$USER/$name
+		git clone git@$gitlab_url:$name
 	;;
 	"-h")
 		gitlab_usage
