@@ -56,7 +56,7 @@ case "$cmd" in
 		name=$2
 		test -z $name && gitlab_usage
 		echo $USER
-		git clone ssh://git@$gitlab_url:$USER/$name
+		git clone git@$gitlab_url:$USER/$name
 	;;
 	"-h")
 		gitlab_usage
