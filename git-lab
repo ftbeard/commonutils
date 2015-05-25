@@ -5,7 +5,7 @@
 # GitLab URL
 gitlab_url=git.atosphere.info
 # secret GitLab API token
-token=
+token=oG-
 # complete URL to the GitLab API
 
 
@@ -51,6 +51,11 @@ case "$cmd" in
 		id=$( curl -X GET $api_url/projects$TOK 2>/dev/null | jq '.[] | select(.name=="'$name'") | .id'; )
 		test -z $id && echo "This repo does not exists." && exit 1
 		curl -X DELETE $api_url/projects/$id$TOK 1>/dev/null 2>/dev/null && echo "Repo deleted"
+	;;
+	"clone")
+		name=$2
+		test -z $name && gitlab_usage
+		git clone git@$gitlab_url:$USER/$name
 	;;
 	"-h")
 		gitlab_usage
