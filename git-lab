@@ -59,4 +59,7 @@ case "$cmd" in
 	"-h")
 		gitlab_usage
 	;;
+	*)
+		gitlab_usage
+	;;
 esac
