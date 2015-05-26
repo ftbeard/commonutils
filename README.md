@@ -1,7 +1,8 @@
 Install:
 --------
-copy git- files to folder in PATH, then you can use it as a git command
-export GLTOKEN=YourSecretGitLabAPIToken
+- copy git- files to folder in PATH, then you can use it as a git command
+- export GLTOKEN=YourSecretGitLabAPIToken
+
 BINARIES:
 =========
 GitLab tool :
