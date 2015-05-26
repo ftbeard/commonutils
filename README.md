@@ -12,6 +12,7 @@ usage : git lab [command]
 -   delete [name] : delete the repository
 -   list : list all the repositories on the GitLab server
 -   -h : show this help
+
 Confirm :
 ---------
 usage : confirm [prompt]
