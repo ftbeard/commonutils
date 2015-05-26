@@ -19,6 +19,7 @@ Confirm :
 usage : confirm [prompt]
 -   display prompt if given, then read for input
 -   return 0 if input in ['yes', 'y', 'Y'], 1 otherwise
+
 Note:
 =====
 Don't forget to add public ssh key to GitLab private panel
