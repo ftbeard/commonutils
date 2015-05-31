@@ -1,5 +1,20 @@
 #!/bin/bash
 
-if [ "$1" != "" ]; then echo -n "$1 "; fi
+if [ "$1" != "" -a "$1" != "-y" ];
+then
+	echo -n "$1 "
+fi
 read msg
-if [ $msg == "yes" -o $msg == "y" -o $msg == "Y" ]; then exit 0; else exit 1; fi
+if [ "$1" == "-y" -o "$2" == "-y" ];
+then
+	if [ "$msg" == "" ];
+	then
+		exit 0
+	fi
+fi
+if [ "$msg" == "yes" -o "$msg" == "y" -o "$msg" == "Y" ];
+then
+	exit 0
+else
+	exit 1
+fi

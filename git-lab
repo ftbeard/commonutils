@@ -21,6 +21,8 @@ function gitlab_usage
    clone [name]    clone the repository
    delete [name]   delete the repository
    list            list all the repositories on the GitLab server
+   list-groups     list all the groups on the GitLab server
+   list-users      list all the groups on the GitLab server
    -h              show this help" 1>&2 && exit 1
 }
 
@@ -32,9 +34,12 @@ cmd=$1
 test -z $cmd && gitlab_usage
 case "$cmd" in
 	"new")
-		repo=$2
-		test -z $repo && gitlab_usage
-		if curl -H "Content-Type:application/json" $api_url/projects$TOK -d "{ \"name\":\"$repo\" }" 2>/dev/null | jq -e .id 1>/dev/null;
+		input=$2
+		test -z $input && gitlab_usage
+		user=$( dirname $input; )
+		repo=$( basename $input; )
+		user_id=$( curl -X GET $api_url/users$TOK 2>/dev/null | jq '.[] | select(.name=="'$user'") | .id'; )
+		if curl -H "Content-Type:application/json" $api_url/projects$TOK -d "{ \"name\":\"$repo\", \"namespace_id\":\"$user_id\" }" 2>/dev/null | jq -e .id 1>/dev/null;
 		then
 			echo "Repo created !"
 		else
@@ -42,20 +47,57 @@ case "$cmd" in
 		fi
 	;;
 	"list")
-		curl -X GET $api_url/projects$TOK 2>/dev/null | jq --raw-output 'map(.id, .name)'
+		#curl -X GET $api_url/projects$TOK 2>/dev/null | jq --raw-output '.[] .name_with_namespace'
+		curl -X GET $api_url/projects$TOK 2>/dev/null | jq '.[]'
 	;;
-	"delete")
+	"list-groups")
+		curl -X GET $api_url/groups$TOK 2>/dev/null | jq '.[]'
+	;;
+	"list-users")
+		curl -X GET $api_url/users$TOK 2>/dev/null | jq '.[]'
+	;;
+	"info")
+		curl -X GET $api_url/user$TOK 2>/dev/null | jq '.'
+	;;
+	"look")
 		name=$2
 		test -z $name && gitlab_usage
-		id=$( curl -X GET $api_url/projects$TOK 2>/dev/null | jq '.[] | select(.name=="'$name'") | .id'; )
-		test -z $id && echo "This repo does not exists." && exit 1
-		confirm "Are you sure ? [Y/n] :" || exit 1
-		curl -X DELETE $api_url/projects/$id$TOK 1>/dev/null 2>/dev/null && echo "Repo deleted"
+		curl -X GET $api_url/projects$TOK 2>/dev/null | jq '.[] | select(.name=="'$name'")'
+	;;
+#	"delete")
+#		input=$2
+#		test -z $input && gitlab_usage
+#		user=$( dirname $input; )
+#		repo=$( basename $input; )
+#		if [ $user == "." ];
+#		then
+#			user_id=$( curl -X GET $api_url/user$TOK 2>/dev/null | jq --raw-output '.id'; )
+#		else
+#			user_id=$( curl -X GET $api_url/groups$TOK 2>/dev/null | jq --raw-output '.[] | select(.name=="'$user'") | .id'; )
+#		fi
+#		echo $user_id
+#		id=$( curl -X GET $api_url/projects$TOK 2>/dev/null | jq '.[] | select(.name=="'$repo'") | select(.namespace.id="'$user_id'") | .id'; )
+#		#test -z "$id" && echo "This repo does not exists." && exit 1
+#		echo $id
+#		confirm "Are you sure ? [Y/n] :" || exit 1
+#		#curl -X DELETE $api_url/projects/$id$TOK 1>/dev/null 2>/dev/null && echo "Repo deleted"
+#	;;
+	"add")
+		name=$2
+		test -z $name && gitlab_usage
+		user=$( dirname $name; )
+		repo=$( basename $name; )
+		if [ $user == "." ];
+		then
+			username=$( curl -X GET $api_url/user$TOK 2>/dev/null | jq --raw-output '.name'; )
+		else
+			username=$user;
+		fi
+		git remote add lab git@$gitlab_url:$username/$repo
 	;;
 	"clone")
 		name=$2
 		test -z $name && gitlab_usage
-		echo $USER
 		git clone git@$gitlab_url:$name
 	;;
 	"-h")
