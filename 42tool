@@ -1,0 +1,65 @@
+#!/bin/sh
+
+api_url="https://api.intrav2.42.fr"
+token="?token=620f94bbc5e53e5e38dfe7528cd75a80ef114f9d"
+
+function ft_usage
+{
+	echo "usage : $0 [command]
+
+   [login]               show user login
+   cursus                show all cursus
+   projects              show all projects of 42 main program
+   users [cursus_id]     show all users in cursus
+   stalk [login]         get the location of login
+   user [login]          show information about login
+   who [project_id]      show all users registered to project
+   teams [project_id]    show teams of project
+   -h                    show this help" 1>&2 && exit 1
+}
+
+cmd=$1
+
+test -z $cmd && ft_usage
+case "$cmd" in
+	"cursus")
+		curl -X GET "$api_url/cursus$token" 2>/dev/null | jq "."
+	;;
+	"projects")
+		curl -X GET "$api_url/cursus/1/projects$token" 2>/dev/null | jq --raw-output 'map("\(.id) \(.name)") | .[]'
+	;;
+	"users")
+		id_cursus=$2
+		test -z $id_cursus && ft_usage
+		curl -X GET "$api_url/cursus/$id_cursus/users$token" 2>/dev/null | jq "."
+	;;
+	"stalk")
+		login=$2
+		test -z $login && ft_usage
+		curl -X GET "$api_url/users/$login$token" 2>/dev/null | jq ".location"
+	;;
+	"user")
+		login=$2
+		test -z $login && ft_usage
+		curl -X GET "$api_url/users/$login$token" 2>/dev/null | jq "."	
+	;;
+	"who")
+		project=$2
+		test -z $project && ft_usage
+		curl -X GET "$api_url/projects/$project/users$token" 2>/dev/null | jq ".[] .login"
+	;;
+	"teams")
+		project=$2
+		test -z $project && ft_usage
+		curl -X GET "$api_url/projects/$project/teams$token" 2>/dev/null | jq ".[]"
+	;;
+	"topics")
+		curl -X GET "$api_url/cursus/1/topics$token" 2>/dev/null | jq '.[]'	
+	;;
+	"-h")
+		ft_usage
+	;;
+	*)
+		curl -X GET "$api_url/users/$cmd$token" 2>/dev/null | jq 'del(.cursus[] | .["42"] | .projects)'
+	;;
+esac
