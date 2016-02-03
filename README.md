@@ -1,7 +1,7 @@
 Install:
 --------
-- make install
-- when git- files are in your $PATH, then you can use them as git commands
+- brew tap ftbeard/commonutils
+- brew install commonutils
 
 BINARIES:
 =========
@@ -33,4 +33,5 @@ usage : gen "pattern"
 ```
 Note:
 =====
-Don't forget to add public ssh key to GitLab private panel
+- when git- files are in your $PATH, then you can use them as git commands
+- Don't forget to add public ssh key to GitLab private panel
