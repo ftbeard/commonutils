@@ -6,8 +6,10 @@ class Commonutils < Formula
   sha256 "b59acc73206118131db469b06e9ec9c115e73bfb0e49f870ea1754c739878268"
 
   def install
+	ENV.deparallelize
 	bin.install "bin/confirm"
 
+	system "make"
 	system "make", "install"
 
   end
