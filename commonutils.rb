@@ -8,6 +8,8 @@ class Commonutils < Formula
   depends_on "lua51"
 
   def install
+      system "luarocks install moonscript"
+      
 	  bin.install "bin/confirm"
   end
 
