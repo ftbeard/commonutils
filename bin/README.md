@@ -1,7 +1,7 @@
 Install:
 --------
-- copy git- files to folder in PATH, then you can use it as a git command
 - add ./bin folder to $PATH for convenience
+- when git- files are in your $PATH, then you can use them as git commands
 
 BINARIES:
 =========
