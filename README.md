@@ -1,6 +1,7 @@
 Install:
 --------
 - brew tap ftbeard/commonutils
+- brew install commonutils
 
 BINARIES:
 =========
