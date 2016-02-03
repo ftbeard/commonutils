@@ -65,7 +65,7 @@ fget = (s) ->
 isspace = (x) ->
     (x == ' ' or x == '\t' or x == '\n' or x == '\r' or x == 'v')
 --------------------------------------------------------------------------------
--- write
+-- printf
 -- print formatted text
-write = (...) ->
+printf = (...) ->
     io.write string.format...

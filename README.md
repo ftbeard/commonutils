@@ -1,12 +1,13 @@
 Install:
 --------
 - copy git- files to folder in PATH, then you can use it as a git command
-- export GLTOKEN=YourSecretGitLabAPIToken
+- add ./bin folder to $PATH for convenience
 
 BINARIES:
 =========
 GitLab tool :
 -------------
+export GLTOKEN=YourSecretGitLabAPIToken
 ```text
 usage : git lab [command]
     new [name] : create a new repository
