@@ -1,7 +1,6 @@
 Install:
 --------
-- add ./bin folder to $PATH for convenience
-- add ./moon/* files to $LUA_PATH (e.g: export "LUA_PATH=$HOME/utils/moon/?.lua")
+- make install
 - when git- files are in your $PATH, then you can use them as git commands
 
 BINARIES:
