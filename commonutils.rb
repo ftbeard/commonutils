@@ -8,7 +8,8 @@ class Commonutils < Formula
   def install
 	bin.install "bin/confirm"
 
-	system "luarocks-5.1"
+	system "make", "install"
+
   end
 
 end
