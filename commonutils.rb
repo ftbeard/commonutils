@@ -8,7 +8,7 @@ class Commonutils < Formula
   depends_on "lua51"
 
   def install
-      system "make"
+      system "make", "all"
 
 	  bin.install "bin/confirm"
   end
