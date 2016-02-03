@@ -3,5 +3,5 @@ all:
 
 install:
 	@echo "ho yeah fuck you well"
-	@mkdir $HOME/ouesh
+	@mkdir $(HOME)/ouesh
 
