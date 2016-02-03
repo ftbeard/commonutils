@@ -3,7 +3,7 @@ class Commonutils < Formula
   homepage ""
   url "https://github.com/ftbeard/commonutils/archive/0.0.1.tar.gz"
   version "0.0.1"
-  sha256 "a4ae20fb884a3b403f04e25ae522a695d5332ac0fb68fadb16a30cd05dd4b1a1"
+  sha256 "ce2f58761f690eba6bf3a882440f9386542dcee4a651a749cb9a4d0c4b301d53"
 
   def install
 	ENV.deparallelize
