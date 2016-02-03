@@ -1,6 +1,7 @@
 Install:
 --------
 - add ./bin folder to $PATH for convenience
+- add ./moon/* files to $LUA_PATH (e.g: export "LUA_PATH=$HOME/utils/moon/?.lua")
 - when git- files are in your $PATH, then you can use them as git commands
 
 BINARIES:
@@ -22,6 +23,14 @@ Confirm :
 usage : confirm [prompt]
     display prompt if given, then read for input
     return 0 if input in ['yes', 'y', 'Y'], 1 otherwise
+```
+Gen:
+----
+```text
+usage : gen "pattern"
+    generate formatted strings
+    example:
+        gen "/* 4- */" -> /* ---- */
 ```
 Note:
 =====
