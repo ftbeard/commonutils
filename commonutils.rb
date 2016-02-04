@@ -12,6 +12,8 @@ class Commonutils < Formula
     system "make", "install" # if this fails, try separate make/make install steps
 
     bin.install "bin/confirm"
+
+    lib.install "lib/moon/utils.moon"
   end
 
 end
