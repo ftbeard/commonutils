@@ -14,6 +14,8 @@ class Commonutils < Formula
     bin.install "bin/confirm"
 
     lib.install "lib/moon/utils.moon"
+    system bin/"luarocks-5.1", "install", "moonscript", "--tree=#{testpath}/luarocks"
+
   end
 
 end
