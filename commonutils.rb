@@ -3,7 +3,7 @@ class Commonutils < Formula
   homepage ""
   url "https://github.com/ftbeard/commonutils/archive/0.0.1.tar.gz"
   version "0.0.1"
-  sha256 "a2c1dbb66699009e0ceb483abf0d2a0a8dde7452f430034f070d33c5d6fd2470"
+  sha256 "32422ed177ee0c54d0af893fdb9327cb70b34d7d3347ea7c2f613499eaf336b9"
 
   def install
     ENV.deparallelize  # if your formula fails when building in parallel
