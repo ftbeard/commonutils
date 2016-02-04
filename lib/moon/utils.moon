@@ -1,5 +1,5 @@
 -- utils.moon
-export Y, map, foldl, foldl1, intersect, xor, map, fget, isspace, write
+export Y, map, foldl, foldl1, intersect, xor, map, fget, isspace, printf
 --------------------------------------------------------------------------------
 -- function composition
 debug.setmetatable ->, {
