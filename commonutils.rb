@@ -15,7 +15,7 @@ class Commonutils < Formula
 
     lib.install "lib/moon/utils.moon"
 
-    system "#{bin}/luarocks-5.1", "install", "moonscript"
+    system "/usr/bin/env", "luarocks-5.1", "install", "moonscript"
 
   end
 
