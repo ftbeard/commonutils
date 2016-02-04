@@ -5,6 +5,8 @@ class Commonutils < Formula
   version "0.0.1"
   sha256 "32422ed177ee0c54d0af893fdb9327cb70b34d7d3347ea7c2f613499eaf336b9"
 
+  depends_on "lua51"
+
   def install
     ENV.deparallelize  # if your formula fails when building in parallel
 
@@ -15,7 +17,7 @@ class Commonutils < Formula
 
     lib.install "lib/moon/utils.moon"
 
-    system "/usr/bin/env", "luarocks-5.1", "install", "moonscript"
+    system "/usr/local/bin/luarocks-5.1", "install", "moonscript"
 
   end
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+git commit -am "generated commit"
+git push origin master
 rm /Library/Caches/Homebrew/commonutils-0.0.1.tar.gz
 brew uninstall commonutils
 brew untap ftbeard/commonutils
